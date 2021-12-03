@@ -33,7 +33,7 @@ const {
   const lines = weekData.slice(0, 5).reduce((prev, cur, index) => {
     const playCount = cur.playCount;
     const artists = cur.song.ar.map(a => a.name);
-    let name = `${cur.song.name} - ${artists.join('/')}`;
+    const name = `${cur.song.name} - ${artists.join('/')}`;
     /**
      * @description: monospace not working in multiple languages
      */
@@ -44,14 +44,15 @@ const {
     //   'plays',
     // ];
     const line = [
-      `${playCount}`.padStart(4),
-      'plays  ',
+      `${playCount}`.padStart(3),
+      'plays',
+      ' · ',
       name,
     ];
 
     return [...prev, line.join(' ')];
   }, []);
-  console.log(lines)
+
   /**
    * Finally, write into gist
    */
