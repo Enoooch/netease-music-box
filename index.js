@@ -34,11 +34,10 @@ const {
     const playCount = cur.playCount;
     const artists = cur.song.ar.map(a => a.name);
     const name = `${cur.song.name} - ${artists.join('/')}`;
-    const hexLength = name.split('').map(char => char.charCodeAt(0).toString(16)).join('').length;
+    const hexLength = name.trim().split('').map(char => char.charCodeAt(0).toString(16)).join('').length;
     
     const line = [
-      name,
-      ''.padEnd(35 - hexLength / 2),
+      name + ' '.padEnd(36 - hexLength / 2),
       `${playCount}`.padStart(4),
       'plays',
     ];
