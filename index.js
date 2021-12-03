@@ -30,17 +30,16 @@ const {
     totalPlayCount += data.playCount;
   });
 
-  // const icon = ['🥇', '🥈', '🥉', '', '']
-
   const lines = weekData.slice(0, 5).reduce((prev, cur, index) => {
     const playCount = cur.playCount;
     const artists = cur.song.ar.map(a => a.name);
-    let name = `${cur.song.name} - ${artists.join('/')}`;
-
+    const name = `${cur.song.name} - ${artists.join('/')}`;
+    const hexLength = name.split('').map(char => char.charCodeAt(0).toString(16)).join('').length;
+    
     const line = [
-      // icon[index].padEnd(2),
-      name.padEnd(35),
-      `${playCount}`.padStart(39),
+      name,
+      ''.padEnd(35 - hexLength / 2),
+      `${playCount}`.padStart(4),
       'plays',
     ];
 
